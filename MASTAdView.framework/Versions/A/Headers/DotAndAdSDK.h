@@ -21,25 +21,30 @@ extern const NSString *_htmlPath;
 
 #pragma mark - Defines
 #define     kUpdateParametersDelay          .5
-#pragma mark Notifications defines
-#define     kDotAndAdWillHideNotification         @"kDotAndAdWillHideNotification"
-#define     kDotAndAdDidHideNotification          @"kDotAndAdDidHideNotification"
-#define     kDotAndAdLockedByFreqNotification     @"kADotAnddLockedByFreqNotification"
 
-//DOTNAD-AF:method added to notify noadv
-#define     kDotAndAdClosedByNoAdvNotification     @"kDotAndAdClosedByNoAdvNotification"
-//DOTNAD-AF END:method added to notify noadv
+#pragma mark Notifications defines
+#define     kDotAndAdWillHideNotification               @"kDotAndAdWillHideNotification"
+#define     kDotAndAdDidHideNotification                @"kDotAndAdDidHideNotification"
+#define     kDotAndAdLockedByFreqNotification           @"kADotAnddLockedByFreqNotification"
+#define     kDotAndAdDidFailToReceiveADNotification     @"kDotAndAdDidFailToReceiveADNotification"
+#define     kDotAndAdDidFailToInitNotification          @"kDotAndAdDidFailToInitNotification"
+#define     kDotAndAdClosedByNoAdvNotification          @"kDotAndAdClosedByNoAdvNotification"
 
 #pragma mark User info dictionary keys
-//#define     kDotAndAdViewUserInfoKey              @"DotAndAdView"
-#define     kDotAndAdParentViewUserInfoKey          @"DotAndParentView"
-#define     kDotAndAdCurrentMptUserInfoKey          @"DotAndCurrentMpt"
+//#define     kDotAndAdViewUserInfoKey                  @"DotAndAdView"
+#define     kDotAndAdParentViewUserInfoKey              @"DotAndParentView"
+#define     kDotAndAdCurrentMptUserInfoKey              @"DotAndCurrentMpt"
+#define     kDotAndAdErrorInfoKey                       @"DotAndError"
 
 /**
  DotAndAdSDK class that contains base functions to manage SDK features
  */
 @class DotAndAdAPI;
 @class DotAndAdConfig;
+
+@protocol DotAndAdSDKDelegate
+- (BOOL)supportViewRotationForBanner:(UIView *)bannerView;
+@end
 
 #pragma mark - Class interface
 @interface DotAndAdSDK : NSObject <DotAndAdRequestDelegate, MASTAdViewDelegate, CLLocationManagerDelegate> {
@@ -70,6 +75,8 @@ extern const NSString *_htmlPath;
 @property(nonatomic, assign) BOOL isWifi, isGPSEnabled;
 @property (strong, nonatomic) IBOutlet CLLocationManager *locationManager;
 @property (strong, nonatomic) IBOutlet CLGeocoder *geoCoder;
+
+@property (assign, nonatomic) id<DotAndAdSDKDelegate>delegate;
 
 #pragma mark Methods
 /**

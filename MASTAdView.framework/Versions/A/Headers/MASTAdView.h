@@ -394,6 +394,7 @@ typedef enum
 -(void) prepareView;
 -(void) pauseBanner;
 -(void) removeView;
+-(void) rotateView;
 -(void) resumeTimer:(NSTimer *)timer;
 
 
@@ -727,7 +728,7 @@ typedef enum
  
  @warning Do not attempt to move or affect the relationship of the view within its superview.
  */
-@property (nonatomic, readonly) UIView* expandView;
+@property (nonatomic, readonly) UIWebView* expandView;
 
 /** Richmedia resize view container.
  
@@ -735,7 +736,7 @@ typedef enum
  
  @warning Do not attempt to move or affect the relationship of the view within its superview.
  */
-@property (nonatomic, readonly) UIView* resizeView;
+@property (nonatomic, readonly) UIWebView* resizeView;
 
 
 ///---------------------------------------------------------------------------------------
